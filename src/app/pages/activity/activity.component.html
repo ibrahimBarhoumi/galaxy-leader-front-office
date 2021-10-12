@@ -1,0 +1,311 @@
+<div class="container-fluid">
+  <app-page-title
+    title="{{ 'HEADER.ACTIVITY.TITEL' | translate}}"
+    [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row mb-md-2">
+            <div class="text-sm-end">
+              <button
+                type="button"
+                class="btn btn-outline-success btn-rounded mb-3 me-2"
+                (click)="onCreateNew()">
+                <i class="mdi mdi-plus mr-1"></i>
+              </button>
+            </div>
+          </div>
+          <!-- Table -->
+
+          <ng-container>
+            <form [formGroup]="activityDataSource.filterForm"
+                  (ngSubmit)="onSearch()">
+              <div fxLayout="column" class="mat-elevation-z2 w-100-p overflow mt-12 disabled-scroll">
+                <table mat-table [dataSource]="activityDataSource.dataSource">
+                  <ng-container matColumnDef="label">
+                    <th class="header pt-16 px-15 max-w-150" mat-header-cell *matHeaderCellDef>
+                      <div class="company">
+                        {{ 'HEADER.ACTIVITY.LABEL' | translate}}
+                      </div>
+                      <mat-form-field class="filter w-100-p" floatLabel="never">
+                        <input matInput
+                               (keyup.backspace)="resetSearch(activityDataSource.filterForm.value.label)"
+                               [formControl]="activityDataSource.filterForm.get(['label'])">
+                        <mat-icon matSuffix class="disabled-text"
+                                  *ngIf="activityDataSource.filterForm.value.label.length === 0">
+                          search
+                        </mat-icon>
+                        <button type="button" mat-icon-button matSuffix class="disabled-text"
+                                *ngIf="activityDataSource.filterForm.value.label.length > 0"
+                                color="primary" (click)="onClearSearchFormFiled('label')">
+                          <mat-icon>clear</mat-icon>
+                        </button>
+                      </mat-form-field>
+                    </th>
+                    <td mat-cell class="px-16" *matCellDef="let el">{{el.label}}</td>
+                  </ng-container>
+                  <ng-container matColumnDef="nature">
+                    <th class="header pt-16 px-16 max-w-150" mat-header-cell *matHeaderCellDef>
+                      <div class="company">
+                        {{ 'HEADER.ACTIVITY.NATURE' | translate}}       </div>
+                      <mat-form-field class="filter w-100-p" floatLabel="never">
+                        <input matInput (keyup.backspace)="resetSearch(activityDataSource.filterForm.value.nature)"
+                               [formControl]="activityDataSource.filterForm.get(['nature'])">
+                        <mat-icon matSuffix class="disabled-text"
+                                  *ngIf="activityDataSource.filterForm.value.nature.length === 0">
+                          search
+                        </mat-icon>
+                        <button type="button" mat-icon-button matSuffix class="disabled-text"
+                                *ngIf="activityDataSource.filterForm.value.nature.length > 0"
+                                color="primary" (click)="onClearSearchFormFiled('nature')">
+                          <mat-icon>clear</mat-icon>
+                        </button>
+                      </mat-form-field>
+                    </th>
+                    <td mat-cell class="px-16" *matCellDef="let el">{{el.nature}}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="startDate">
+                    <th class="header pt-16 px-16 max-w-150" mat-header-cell *matHeaderCellDef>
+                      <div class="company">
+                        {{ 'HEADER.ACTIVITY.STARTDATE' | translate}}      </div>
+                      <mat-form-field class="filter w-100-p" floatLabel="never">
+                        <input matInput (keyup.backspace)="resetSearch(activityDataSource.filterForm.value.startDate)"
+                               [formControl]="activityDataSource.filterForm.get(['startDate'])">
+                        <mat-icon matSuffix class="disabled-text"
+                                  *ngIf="activityDataSource.filterForm.value.startDate.length === 0">
+                          search
+                        </mat-icon>
+                        <button type="button" mat-icon-button matSuffix class="disabled-text"
+                                *ngIf="activityDataSource.filterForm.value.startDate.length > 0"
+                                color="primary" (click)="onClearSearchFormFiled('startDate')">
+                          <mat-icon>clear</mat-icon>
+                        </button>
+                      </mat-form-field>
+                    </th>
+                    <td mat-cell class="px-16" *matCellDef="let el">{{el.startDate}}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="endDate">
+                    <th class="header pt-16 px-16 max-w-150" mat-header-cell *matHeaderCellDef>
+                      <div class="company">
+                        {{ 'HEADER.ACTIVITY.MODAL.ENDDATE' | translate}}      </div>
+                      <mat-form-field class="filter w-100-p" floatLabel="never">
+                        <input matInput (keyup.backspace)="resetSearch(activityDataSource.filterForm.value.endDate)"
+                               [formControl]="activityDataSource.filterForm.get(['endDate'])">
+                        <mat-icon matSuffix class="disabled-text"
+                                  *ngIf="activityDataSource.filterForm.value.endDate.length === 0">
+                          search
+                        </mat-icon>
+                        <button type="button" mat-icon-button matSuffix class="disabled-text"
+                                *ngIf="activityDataSource.filterForm.value.endDate.length > 0"
+                                color="primary" (click)="onClearSearchFormFiled('endDate')">
+                          <mat-icon>clear</mat-icon>
+                        </button>
+                      </mat-form-field>
+                    </th>
+                    <td mat-cell class="px-16" *matCellDef="let el">{{el.endDate}}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="isCommon">
+                    <th class="header pt-16 px-16 max-w-150" mat-header-cell *matHeaderCellDef>
+                      <div class="company">
+                        {{ 'HEADER.ACTIVITY.COMMON' | translate}}      </div>
+                      <mat-form-field class="filter w-100-p" floatLabel="never">
+                        <input matInput (keyup.backspace)="resetSearch(activityDataSource.filterForm.value.isCommon)"
+                               [formControl]="activityDataSource.filterForm.get(['isCommon'])">
+                        <mat-icon matSuffix class="disabled-text"
+                                  *ngIf="activityDataSource.filterForm.value.isCommon.length === 0">
+                          search
+                        </mat-icon>
+                        <button type="button" mat-icon-button matSuffix class="disabled-text"
+                                *ngIf="activityDataSource.filterForm.value.isCommon.length > 0"
+                                color="primary" (click)="onClearSearchFormFiled('isCommon')">
+                          <mat-icon>clear</mat-icon>
+                        </button>
+                      </mat-form-field>
+                    </th>
+                    <td mat-cell class="px-16" *matCellDef="let el">{{el.common}}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="client">
+                    <th class="header pt-16 px-16 max-w-150" mat-header-cell *matHeaderCellDef>
+                      <div class="company">
+                        client    </div>
+                      <mat-form-field class="filter w-100-p" floatLabel="never">
+                        <input matInput (keyup.backspace)="resetSearch(activityDataSource.filterForm.value.client)"
+                               [formControl]="activityDataSource.filterForm.get(['client'])">
+                        <mat-icon matSuffix class="disabled-text"
+                                  *ngIf="activityDataSource.filterForm.value.client.length === 0">
+                          search
+                        </mat-icon>
+                        <button type="button" mat-icon-button matSuffix class="disabled-text"
+                                *ngIf="activityDataSource.filterForm.value.client.length > 0"
+                                color="primary" (click)="onClearSearchFormFiled('client')">
+                          <mat-icon>clear</mat-icon>
+                        </button>
+                      </mat-form-field>
+                    </th>
+                    <td mat-cell class="px-16" *matCellDef="let el">{{el.client?.companyName}}</td>
+                  </ng-container>
+                  <ng-container matColumnDef="actions" stickyEnd class="action">
+                    <th mat-header-cell class="py-12" *matHeaderCellDef>
+                      <div class="mt-13">
+                        <button type="submit" mat-icon-button aria-label="Submit"
+                                [ngClass]="activityDataSource.filterForm.value.label.length === 0 && activityDataSource.filterForm.value.label.length === 0? 'aster_accent_disabled':'aster_accent'"
+                                [disabled]="activityDataSource.filterForm.value.label.length === 0 && activityDataSource.filterForm.value.label.length === 0">
+                          <mat-icon class="arrow" [inline]="true">arrow_forward</mat-icon>
+                        </button>
+                        <button type="button" mat-icon-button aria-label="reset " class="aster_accent"
+                                (click)="onResetSearchFilter()">
+                          <mat-icon [inline]="true">settings_backup_restore</mat-icon>
+                        </button>
+
+                      </div>
+                    </th>
+                    <td mat-cell class="py-7" *matCellDef="let el; let i = dataIndex;" >
+                      <div fxFlex="row" fxLayoutAlign="center" fxLayoutGap="10px">
+                        <button type="button" mat-icon-button class="aster_accent" (click)="onEdit(i, el)">
+                          <mat-icon class="edit" [inline]="true">edit</mat-icon>
+                        </button>
+                        <button type="button" mat-icon-button color="warn" (click)="onDelete(i, el)">
+                          <mat-icon [inline]="true">delete</mat-icon>
+                        </button>
+                      </div>
+                    </td>
+                  </ng-container>
+                  <tr mat-header-row *matHeaderRowDef="activityDataSource.columnsToDisplay" ></tr>
+                  <tr mat-row
+                      *matRowDef="let el; columns: activityDataSource.columnsToDisplay"></tr>
+                </table>
+              </div>
+            </form>
+          </ng-container>
+
+          <mat-paginator *ngIf="!!activityDataSource.page"
+                         [length]="activityDataSource.page.totalElements"
+                         [pageSizeOptions]="activityDataSource.pageSizeOptions"
+                         (page)="paginate($event)"
+                         [pageSize]="activityDataSource.page.size"
+                         [pageIndex]="getPageIndex()"
+                         class="w-100-p"></mat-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #activityModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">{{ mode }} activity</h5>
+    <button
+      type="button"
+      class="btn-close"
+      (click)="modal.dismiss('Cross click')"
+      aria-hidden="true"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-12">
+        <div class="row mb-3">
+          <label class="col-md-3 col-form-label">{{ 'HEADER.ACTIVITY.MODAL.LABEL' | translate}}</label>
+          <div class="col-md-9">
+            <input
+              class="form-control"
+              name="label"
+              type="text"
+              [(ngModel)]="selectedActivity.label"
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label class="col-md-3 col-form-label">{{ 'HEADER.ACTIVITY.MODAL.NATURE' | translate}}</label>
+          <div class="col-md-9">
+            <input
+              class="form-control"
+              name="nature"
+              type="text"
+              [(ngModel)]="selectedActivity.nature"
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label class="col-md-3 col-form-label">{{ 'HEADER.ACTIVITY.MODAL.STARTDATE' | translate}}</label>
+          <div class="col-md-9">
+            <input
+              class="form-control"
+              name="startDate"
+              type="date"
+              [(ngModel)]="selectedActivity.startDate"
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label class="col-md-3 col-form-label">{{ 'HEADER.ACTIVITY.MODAL.ENDDATE' | translate}}</label>
+          <div class="col-md-9">
+            <input
+              class="form-control"
+              name="endDate"
+              type="date"
+              [(ngModel)]="selectedActivity.endDate"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="col-md-3 col-form-label">{{ 'HEADER.ACTIVITY.MODAL.CLIENT' | translate}}</label>
+          <div class="col-md-9">
+
+            <ng-select [items]="clients$ | async"
+            bindLabel="label"
+            [multiple]="false"
+            [hideSelected]="true"
+
+            [minTermLength]="2"
+            [loading]="clientLoading"
+            typeToSearchText="Please enter 2 or more characters"
+            [typeahead]="clientInput$"
+            [trackByFn]="trackByFn"
+            [hideSelected]="true"
+            [(ngModel)]="client">
+ </ng-select>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-md-3 col-form-label">{{ 'HEADER.ACTIVITY.MODAL.COMMON' | translate}}</label>
+        <div class="col-md-9">
+          <div class="form-check form-switch form-switch-md mb-3" dir="ltr">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="SwitchCheckSizemd"
+              name="common"
+              [(ngModel)]="selectedActivity.common"
+            />
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-light"
+      (click)="modal.close('Close click')"
+    >
+    {{ 'HEADER.ACTIVITY.MODAL.CLOSE' | translate}}
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="addOrUpdateActivity(activityModal)"
+    >
+    {{ 'HEADER.ACTIVITY.MODAL.SAVE' | translate}}
+    </button>
+  </div>
+</ng-template>

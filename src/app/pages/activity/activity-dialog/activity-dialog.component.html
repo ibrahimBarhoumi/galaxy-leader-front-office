@@ -1,0 +1,93 @@
+<mat-toolbar>
+  <span [hidden]="activityService.form.controls['id'].value">{{'HEADER.ACTIVITY.MODAL.TITLECREATE'|translate}}</span>
+  <span [hidden]="!activityService.form.controls['id'].value">{{'HEADER.ACTIVITY.MODAL.TITELUPDATE'|translate}}</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close "  mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+<form class="needs-validation" (submit)="onSubmit()" [formGroup]="activityService.form">
+  <div class="row mb-4">
+    <label for="horizontal-firstname-input" class="col-sm-3 col-form-label">{{ 'HEADER.ACTIVITY.LABEL' | translate}}</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" id="horizontal-firstname-input" formControlName="label"
+             placeholder="{{ 'HEADER.ACTIVITY.LABEL' | translate}}"   >
+      <div *ngIf="activityService.formControls.label.invalid && (activityService.formControls.label.dirty || activityService.formControls.label.touched)" class="mat-error ng-tns-c181-19"  >
+        {{'HEADER.ERROR.REQUIRED'|translate}}
+      </div>
+    </div>
+
+  </div>
+  <div class="row mb-4">
+    <label for="horizontal-email-input" class="col-sm-3 col-form-label">{{ 'HEADER.ACTIVITY.NATURE' | translate}}</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" id="horizontal-email-input" formControlName="nature"
+             placeholder="{{ 'HEADER.ACTIVITY.NATURE' | translate}}">
+      <div *ngIf="activityService.formControls.nature.invalid && (activityService.formControls.nature.dirty || activityService.formControls.nature.touched)" class="mat-error ng-tns-c181-19"  >
+        {{'HEADER.ERROR.REQUIRED'|translate}}
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <label for="horizontal-email-input" class="col-sm-3 col-form-label">{{ 'HEADER.ACTIVITY.COMMON' | translate}}</label>
+    <div class="col-sm-9">
+      <div class="form-check form-switch form-switch-md mb-3" dir="ltr">
+      <input type="checkbox" class="form-check-input"   id="SwitchCheckSizemd" formControlName="common"
+             (change)="activityService.onCheckChange($event) "  >
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="activityService.form.controls['common'].value">
+    <div class="row mb-4">
+      <label class="col-md-3 col-form-label">{{ 'HEADER.ACTIVITY.MODAL.STARTDATE' | translate}}</label>
+      <div class="col-md-9">
+        <input
+          class="form-control"
+          formControlName="startDate"
+          name="startDate"
+          type="date"
+        />
+      </div>
+    </div>
+    <div class="row mb-4">
+      <label class="col-md-3 col-form-label">{{ 'HEADER.ACTIVITY.MODAL.ENDDATE' | translate}}</label>
+      <div class="col-md-9">
+        <input
+          class="form-control"
+          name="endDate"
+          type="date"
+          formControlName="endDate"
+        />
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-md-3 col-form-label">{{ 'HEADER.ACTIVITY.MODAL.CLIENT' | translate}}</label>
+      <div class="col-md-9">
+
+        <ng-select [items]="clients$ | async"
+                   bindLabel="companyName"
+                   [multiple]="false"
+                   [hideSelected]="true"
+                   formControlName="client"
+                   [minTermLength]="2"
+                   [loading]="clientLoading"
+                   typeToSearchText="Please enter 2 or more characters"
+                   [typeahead]="clientInput$"
+                   [trackByFn]="trackByFn"
+                   [hideSelected]="true">
+        </ng-select>
+
+      </div>
+    </div>
+  </ng-container>
+
+  <div class="d-flex  justify-content-end">
+    <div class="button-row">
+      <button mat-raised-button color="warn" (click)="onClear()">{{'HEADER.CLIENTS.MODAL.CLEAR'|translate}}</button>
+      <button [hidden]="activityService.form.controls['id'].value" mat-raised-button class="submitCreate" type="submit" [disabled]="activityService.form.invalid">{{'HEADER.CLIENTS.MODAL.SAVE'|translate}}</button>
+      <button [hidden]="!activityService.form.controls['id'].value" mat-raised-button class="submitUpdate" type="submit" [disabled]="activityService.form.invalid">{{'HEADER.CLIENTS.MODAL.SAVE'|translate}}</button>
+
+    </div>
+  </div>
+
+</form>

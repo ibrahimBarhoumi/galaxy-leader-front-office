@@ -1,0 +1,216 @@
+{   "DELETE": {
+      "TITLE": "Vous êtes sûr ?",
+      "CONFIRM" : "Confirmer",
+      "CANCEL": "Annuler",
+      "TOASTMESSAGE": "element a été éffacé avec succès",
+      "TOASTMESSAGECREATE": "element a été ajouté avec succès",
+      "TOASTMESSAGEUPDATE": "element a été modifié avec succès"
+
+},
+    "HEADER":
+    {
+      "SEARCH": "Search...",
+      "ERROR": {
+        "REQUIRED" : "Ce champ est obligatoire",
+        "REQUIRED8NUMBER" : "Ce champ doit comporter 8 chiffres"
+      },
+      "CONFIGURATION":
+       {
+            "SEARCH": "Chercher...",
+            "TITEL": "Configuration",
+            "CODE": "Code",
+            "LABEL": "Label",
+            "ACTION": "Action",
+            "SHOWING":"présentation",
+            "TO":"de",
+            "OF":"en",
+            "ENTRIES":"éléments",
+            "MODAL":
+                {
+                  "TITLECREATE": "Créer une nouvelle Configuration",
+                  "TITELUPDATE": "Modifier une Configuration",
+                "CODE":"Code ",
+                "LABEL":"Label",
+                "CLOSE":"Fermer",
+                "SAVE":"Sauvegarder Les Modifications",
+                  "MESSAGE": "Voulez-vous supprimer cette configuration ?"
+            }
+        },
+        "CONFIGURATIONVALUE":{
+            "SEARCH": "Chercher:",
+            "TITEL": "Valeur de configuration",
+            "CODE": "Code",
+            "LABEL": "Label",
+            "ACTION": "Action",
+            "SHOWING":"présentation",
+            "TO":"de",
+            "OF":"en",
+            "ENTRIES":"éléments",
+            "MODAL":{
+              "MESSAGE": "Voulez-vous supprimer cette Valeur de configuration ?",
+              "CODE":"Code Configuration",
+              "LABEL":"Label",
+              "CLOSE":"Fermer",
+              "SAVE":"Sauvegarder Les Modifications"
+            }
+          },
+          "PUBLICHOLIDAY":{
+            "SEARCH": "Chercher:",
+            "TITEL": "Les jours fériés",
+            "LABEL": "Label",
+            "DATE": "Date",
+            "ACTION": "Action",
+            "SHOWING":"présentation",
+            "TO":"de",
+            "OF":"en",
+            "ENTRIES":"éléments",
+            "MODAL":{
+              "TITLECREATE": "Créer un nouveau jour férié",
+              "TITELUPDATE": "Modifier un jour férié",
+              "LABEL":"Label",
+              "DATE":"Date",
+              "CLOSE":"Fermer",
+              "SAVE":"Sauvegarder Les Modifications",
+              "MESSAGE": "Voulez-vous supprimer ce jour férié ?"
+            }
+          },
+          "ACTIVITY":{
+            "SEARCH": "Chercher:",
+            "TITEL": "Les activités",
+            "LABEL": "Label",
+            "NATURE": "Nature",
+            "ACTION": "Action",
+            "SHOWING":"présentation",
+            "STARTDATE":"Date de début",
+            "ENDDATE":"Date de fin",
+            "COMMON":"Commun",
+            "CLIENT":"Client",
+            "TO":"de",
+            "OF":"en",
+            "ENTRIES":"éléments",
+            "MODAL":{
+              "TITLECREATE": "Créer une nouvelle activité",
+              "TITELUPDATE": "Modifier une activité",
+              "LABEL":"Label",
+              "ACTIVITY":"Activité",
+              "NATURE": "Nature",
+              "ACTION": "Action",
+              "COMMON":"Commun",
+              "STARTDATE":"Date de début",
+              "ENDDATE":"Date de fin",
+              "CLIENT":"Client",
+              "CLOSE":"Fermer",
+              "SAVE":"Sauvegarder Les Modifications",
+              "MESSAGE": "Voulez-vous supprimer cette activité ?"
+            }
+          },
+          "CLIENTS":{
+            "SEARCH": "Search:",
+            "ACTION":"Action",
+            "TITEL": "Gestion de Client",
+            "COMPANY": "Nom de la société",
+            "ADDRESS": "Adress",
+            "POSTALCODE": "Code Post",
+            "CITY":"Ville",
+            "LEGALFORM" : "Forme juridique",
+            "CAPITAL" :"Capital",
+            "RCC":"RCC",
+            "SIREN":"Siren",
+            "VATNUMBER":"VAT number",
+            "FOREIGN":"Étranger",
+            "CURRENCY":"Devise",
+            "SHOWING":"présentation",
+            "TO":"de",
+            "OF":"en",
+            "ENTRIES":"éléments",
+            "MODAL":{
+                "TITLECREATE": "Créer un nouveau client",
+                "TITELUPDATE": "Modifier un client",
+                "COMPANY": "Nom de la société*",
+                "ADDRESS": "Adress*",
+                "POSTCODE": "Code Post*",
+                "CITY":"Ville*",
+                "LEGALFORM" : "Forme juridique*",
+                "CAPITAL" :"Capital*",
+                "RCC":"RCC*",
+                "SIREN":"Siren*",
+                "VATNUMBER":"VAT number",
+                "FOREIGN":"étranger",
+                "CURRENCY":"Devise",
+                "CLEAR":"Vider",
+                "SAVE":"Sauvegarder",
+                "MESSAGE": "Voulez-vous supprimer ce Client ?"
+            }
+          },
+          "ROLES":{
+            "SEARCH": "Chercher:",
+            "TITEL": "La gestion des roles",
+            "NAME": "Nom",
+            "DESCRIPTION": "Description",
+            "ACTION": "Action",
+            "SHOWING":"présentation",
+            "TO":"de",
+            "OF":"en",
+            "ENTRIES":"éléments",
+            "MODAL":{
+              "TITLECREATE": "Créer un nouveau Role",
+              "TITELUPDATE": "Modifier un Role",
+              "NAME": "Nom",
+              "DESCRIPTION": "Description",
+              "CLOSE":"Fermer",
+              "SAVE":"Sauvegarder Les Modifications",
+              "MESSAGE": "Voulez-vous supprimer ce Role ?"
+            }
+          },
+          "USER":{
+            "SEARCH": "Chercher:",
+            "TITEL": "List des  utilisateurs",
+            "NAME": "Nom",
+            "LASTNAME": "Prénom",
+            "ROLE":"Role",
+            "EMAIL":"E-Mail",
+            "NUMTEL":"Num.Tel",
+            "ENABLED":"Actif",
+            "ACTION": "Action",
+            "SHOWING":"présentation",
+            "TO":"de",
+            "OF":"en",
+            "ENTRIES":"éléments",
+            "MODAL":{
+              "TITLECREATE": "Créer un nouveau utilisateur",
+              "TITELUPDATE": "Modifier un utilisateur",
+              "NAME": "Nom",
+              "LASTNAME": "Prénom",
+              "ROLE":"Role",
+              "EMAIL":"E-Mail",
+              "NUMTEL":"Num.Tel",
+              "ENABLED":"Actif",
+              "USERNAME":"Nom d'utilisateur",
+              "PASSWORD":"Mot de passe",
+              "CLOSE":"Fermer",
+              "SAVE":"Sauvegarder Les Modifications"
+            }
+          },
+          "LOGIN":{
+            "USERNAME": "Nom d'utilisateur",
+            "PASSWORD": "Mot de passe",
+            "LOGIN":"Se connecter",
+            "LOGOUT":"Déconnexion"
+          },
+          "MENU":{
+            "TIMESHEET":"CRA",
+            "ADMINISTRATION":"Administration",
+            "USERS":"List des utilisateurs",
+            "ROLES":"List des roles",
+            "CLIENTS":"Clients",
+            "PUBLICHOLIDAY":"Jour férié",
+            "CONFIGURATION":"Configuration",
+            "CONFIGURATIONVALUE":"Valeur de Configuration",
+            "ACTIVITIES":"Activités",
+            "CONFIGURATIONS":"Configurations"
+          }
+
+
+    }
+
+  }

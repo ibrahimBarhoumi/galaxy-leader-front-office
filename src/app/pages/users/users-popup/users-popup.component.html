@@ -1,0 +1,114 @@
+<mat-toolbar>
+  <span [hidden]="userService.form.controls['id'].value">{{'HEADER.USER.MODAL.TITLECREATE'|translate}}</span>
+  <span [hidden]="!userService.form.controls['id'].value">{{'HEADER.USER.MODAL.TITELUPDATE'|translate}}</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close "  mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+<form class="needs-validation" (submit)="onSubmit()" [formGroup]="userService.form">
+  <div class="row mb-4">
+    <label class="col-md-3 col-form-label">{{ 'HEADER.USER.MODAL.LASTNAME' | translate}}</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" id="horizontal-firstlabel-input" formControlName="lastname"
+             placeholder="{{ 'HEADER.USER.MODAL.LASTNAME' | translate}}"   [ngClass]="{
+                        'is-invalid': userService.form.controls['lastname'].errors
+                      }">
+      <div *ngIf="userService.formControls.lastname.invalid && (userService.formControls.lastname.dirty || userService.formControls.lastname.touched)" class="mat-error ng-tns-c181-19"  >
+        {{'HEADER.ERROR.REQUIRED'|translate}}
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row mb-4">
+    <label class="col-md-3 col-form-label">{{ 'HEADER.USER.MODAL.NAME' | translate}}</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control"  formControlName="name"
+             placeholder="{{ 'HEADER.USER.MODAL.NAME' | translate}}" [ngClass]="{
+                        'is-invalid': userService.form.controls['name'].errors
+                      }">
+      <div *ngIf="userService.formControls.name.invalid && (userService.formControls.name.dirty || userService.formControls.name.touched)" class="mat-error ng-tns-c181-19"  >
+        {{'HEADER.ERROR.REQUIRED'|translate}}
+      </div>
+    </div>
+    </div>
+
+
+  <div class="row mb-4">
+    <label class="col-md-3 col-form-label">{{ 'HEADER.USER.MODAL.EMAIL' | translate}}</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control"  formControlName="email"
+             placeholder="{{ 'HEADER.USER.MODAL.EMAIL' | translate}}">
+      <div *ngIf="userService.formControls.email.invalid && (userService.formControls.email.dirty || userService.formControls.email.touched)" class="mat-error ng-tns-c181-19"  >
+        {{'HEADER.ERROR.REQUIRED'|translate}}
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <label class="col-md-3 col-form-label">{{ 'HEADER.USER.MODAL.NUMTEL' | translate}}</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control"  formControlName="mobile"
+             placeholder="{{ 'HEADER.USER.MODAL.NUMTEL' | translate}}">
+      <div *ngIf="userService.formControls.mobile.invalid && (userService.formControls.mobile.dirty || userService.formControls.mobile.touched)" class="mat-error ng-tns-c181-19"  >
+        {{'HEADER.ERROR.REQUIRED'|translate}}
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <label class="col-md-3 col-form-label">{{ 'HEADER.USER.MODAL.USERNAME' | translate}}</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control"  formControlName="userName"
+             placeholder="{{ 'HEADER.USER.MODAL.USERNAME' | translate}}">
+      <div *ngIf="userService.formControls.userName.invalid && (userService.formControls.userName.dirty || userService.formControls.userName.touched)" class="mat-error ng-tns-c181-19"  >
+        {{'HEADER.ERROR.REQUIRED'|translate}}
+      </div>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <label class="col-md-3 col-form-label">{{ 'HEADER.USER.MODAL.PASSWORD' | translate}}</label>
+    <div class="col-sm-9">
+      <input type="password" class="form-control"  formControlName="password"
+             placeholder="{{ 'HEADER.USER.MODAL.PASSWORD' | translate}}">
+      <div *ngIf="userService.formControls.password.invalid && (userService.formControls.password.dirty || userService.formControls.password.touched)" class="mat-error ng-tns-c181-19"  >
+        {{'HEADER.ERROR.REQUIRED'|translate}}
+      </div>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <label class="col-md-3 col-form-label">{{ 'HEADER.USER.MODAL.ENABLED' | translate}}</label>
+    <div class="col-sm-9">
+      <div class="form-check form-switch form-switch-md mb-3" dir="ltr">
+      <input type="checkbox"  class="form-check-input" formControlName="enabled"
+             (change)="userService.onCheckChange($event)"  >
+      </div>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <label class="col-md-3 col-form-label">{{ 'HEADER.USER.MODAL.ROLE' | translate}}</label>
+    <div class="col-sm-9">
+
+      <ng-multiselect-dropdown
+        [placeholder]="'Select roles'"
+        [settings]="dropdownSettings"
+        [data]="dropdownList"
+        formControlName="roles"
+        (onSelect)="onItemSelect($event)"
+        (onSelectAll)="onSelectAll($event)"
+      >
+      </ng-multiselect-dropdown>
+
+
+    </div>
+  </div>
+  <div class="d-flex  justify-content-end">
+    <div class="button-row">
+      <button mat-raised-button color="warn" (click)="onClear()">{{'HEADER.CLIENTS.MODAL.CLEAR'|translate}}</button>
+      <button [hidden]="userService.form.controls['id'].value" mat-raised-button class="submitCreate" type="submit" [disabled]="userService.form.invalid">{{'HEADER.CLIENTS.MODAL.SAVE'|translate}}</button>
+      <button [hidden]="!userService.form.controls['id'].value" mat-raised-button class="submitUpdate" type="submit" [disabled]="userService.form.invalid">{{'HEADER.CLIENTS.MODAL.SAVE'|translate}}</button>
+
+    </div>
+  </div>
+
+
+</form>

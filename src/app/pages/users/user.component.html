@@ -1,0 +1,226 @@
+<div class="container-fluid">
+    <app-page-title
+      title="{{ 'HEADER.USER.TITEL' | translate}}"
+      [breadcrumbItems]="breadCrumbItems"
+    ></app-page-title>
+    <div class="row" >
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="row mb-md-2">
+              <!-- Search -->
+
+              <!-- End search -->
+              <div class="text-sm-end">
+                <button
+                  type="button"
+                  class="btn btn-outline-success btn-rounded mb-3 me-2"
+                  (click)="onCreateNew()">
+                  <i class="mdi mdi-plus mr-1"></i>
+                </button>
+              </div>
+            </div>
+            <!-- Table -->
+            <ng-container>
+              <form [formGroup]="userDataSource.filterForm"
+                    (ngSubmit)="onSearch()">
+                <div fxLayout="column" class="mat-elevation-z2 w-100-p overflow mt-12 disabled-scroll">
+                  <table mat-table [dataSource]="userDataSource.dataSource">
+                    <ng-container matColumnDef="email">
+                      <th class="header pt-16 px-15 max-w-150" mat-header-cell *matHeaderCellDef>
+                        <div class="company">
+                          {{ 'HEADER.USER.MODAL.EMAIL' | translate}}
+                        </div>
+                        <mat-form-field class="filter w-100-p" floatLabel="never">
+                          <input matInput
+                                 (keyup.backspace)="resetSearch(userDataSource.filterForm.value.email)"
+                                 [formControl]="userDataSource.filterForm.get(['email'])">
+                          <mat-icon matSuffix class="disabled-text"
+                                    *ngIf="userDataSource.filterForm.value.email.length === 0">
+                            search
+                          </mat-icon>
+                          <button type="button" mat-icon-button matSuffix class="disabled-text"
+                                  *ngIf="userDataSource.filterForm.value.email.length > 0"
+                                  color="primary" (click)="onClearSearchFormFiled('email')">
+                            <mat-icon>clear</mat-icon>
+                          </button>
+                        </mat-form-field>
+                      </th>
+                      <td mat-cell class="px-16" *matCellDef="let el">{{el.email}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="mobile">
+                      <th class="header pt-16 px-16 max-w-150" mat-header-cell *matHeaderCellDef>
+                        <div class="company">
+                          {{ 'HEADER.USER.MODAL.NUMTEL' | translate}}      </div>
+                        <mat-form-field class="filter w-100-p" floatLabel="never">
+                          <input matInput (keyup.backspace)="resetSearch(userDataSource.filterForm.value.mobile)"
+                                 [formControl]="userDataSource.filterForm.get(['mobile'])">
+                          <mat-icon matSuffix class="disabled-text"
+                                    *ngIf="userDataSource.filterForm.value.mobile.length === 0">
+                            search
+                          </mat-icon>
+                          <button type="button" mat-icon-button matSuffix class="disabled-text"
+                                  *ngIf="userDataSource.filterForm.value.mobile.length > 0"
+                                  color="primary" (click)="onClearSearchFormFiled('mobile')">
+                            <mat-icon>clear</mat-icon>
+                          </button>
+                        </mat-form-field>
+                      </th>
+                      <td mat-cell class="px-16" *matCellDef="let el">{{el.mobile}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="name">
+                      <th class="header pt-16 px-16 max-w-150" mat-header-cell *matHeaderCellDef>
+                        <div class="company">
+                          {{ 'HEADER.USER.MODAL.NAME' | translate}}       </div>
+                        <mat-form-field class="filter w-100-p" floatLabel="never">
+                          <input matInput (keyup.backspace)="resetSearch(userDataSource.filterForm.value.name)"
+                                 [formControl]="userDataSource.filterForm.get(['name'])">
+                          <mat-icon matSuffix class="disabled-text"
+                                    *ngIf="userDataSource.filterForm.value.name.length === 0">
+                            search
+                          </mat-icon>
+                          <button type="button" mat-icon-button matSuffix class="disabled-text"
+                                  *ngIf="userDataSource.filterForm.value.name.length > 0"
+                                  color="primary" (click)="onClearSearchFormFiled('name')">
+                            <mat-icon>clear</mat-icon>
+                          </button>
+                        </mat-form-field>
+                      </th>
+                      <td mat-cell class="px-16" *matCellDef="let el">{{el.name}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="userName">
+                      <th class="header pt-16 px-16 max-w-150" mat-header-cell *matHeaderCellDef>
+                        <div class="company">
+                          {{ 'HEADER.USER.MODAL.USERNAME' | translate}}       </div>
+                        <mat-form-field class="filter w-100-p" floatLabel="never">
+                          <input matInput (keyup.backspace)="resetSearch(userDataSource.filterForm.value.userName)"
+                                 [formControl]="userDataSource.filterForm.get(['userName'])">
+                          <mat-icon matSuffix class="disabled-text"
+                                    *ngIf="userDataSource.filterForm.value.userName.length === 0">
+                            search
+                          </mat-icon>
+                          <button type="button" mat-icon-button matSuffix class="disabled-text"
+                                  *ngIf="userDataSource.filterForm.value.userName.length > 0"
+                                  color="primary" (click)="onClearSearchFormFiled('userName')">
+                            <mat-icon>clear</mat-icon>
+                          </button>
+                        </mat-form-field>
+                      </th>
+                      <td mat-cell class="px-16" *matCellDef="let el">{{el.userName}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="roles">
+                      <th class="header pt-16 px-16 max-w-150" mat-header-cell *matHeaderCellDef>
+                        <div class="company">
+                          {{ 'HEADER.USER.MODAL.ROLE' | translate}}       </div>
+                        <mat-form-field class="filter w-100-p" floatLabel="never">
+                          <input matInput (keyup.backspace)="resetSearch(userDataSource.filterForm.value.roles)"
+                                 [formControl]="userDataSource.filterForm.get(['roles'])">
+                          <mat-icon matSuffix class="disabled-text"
+                                    *ngIf="userDataSource.filterForm.value.roles.length === 0">
+                            search
+                          </mat-icon>
+                          <button type="button" mat-icon-button matSuffix class="disabled-text"
+                                  *ngIf="userDataSource.filterForm.value.roles.length > 0"
+                                  color="primary" (click)="onClearSearchFormFiled('roles')">
+                            <mat-icon>clear</mat-icon>
+                          </button>
+                        </mat-form-field>
+                      </th>
+                      <td mat-cell class="px-16" *matCellDef="let el"><span *ngFor="let role of el.roles"> {{role.name}}</span></td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="enabled">
+                      <th class="header pt-16 px-16 max-w-150" mat-header-cell *matHeaderCellDef>
+                        <div class="company">
+                          {{ 'HEADER.USER.MODAL.ENABLED' | translate}}       </div>
+                        <mat-form-field class="filter w-100-p" floatLabel="never">
+                          <input matInput (keyup.backspace)="resetSearch(userDataSource.filterForm.value.enabled)"
+                                 [formControl]="userDataSource.filterForm.get(['enabled'])">
+                          <mat-icon matSuffix class="disabled-text"
+                                    *ngIf="userDataSource.filterForm.value.enabled.length === 0">
+                            search
+                          </mat-icon>
+                          <button type="button" mat-icon-button matSuffix class="disabled-text"
+                                  *ngIf="userDataSource.filterForm.value.enabled.length > 0"
+                                  color="primary" (click)="onClearSearchFormFiled('enabled')">
+                            <mat-icon>clear</mat-icon>
+                          </button>
+                        </mat-form-field>
+                      </th>
+                      <td mat-cell class="px-16" *matCellDef="let el">{{el.enabled}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="lastname">
+                      <th class="header pt-16 px-16 max-w-150" mat-header-cell *matHeaderCellDef>
+                        <div class="company">
+                          {{ 'HEADER.USER.MODAL.LASTNAME' | translate}}       </div>
+                        <mat-form-field class="filter w-100-p" floatLabel="never">
+                          <input matInput (keyup.backspace)="resetSearch(userDataSource.filterForm.value.lastname)"
+                                 [formControl]="userDataSource.filterForm.get(['lastname'])">
+                          <mat-icon matSuffix class="disabled-text"
+                                    *ngIf="userDataSource.filterForm.value.lastname.length === 0">
+                            search
+                          </mat-icon>
+                          <button type="button" mat-icon-button matSuffix class="disabled-text"
+                                  *ngIf="userDataSource.filterForm.value.lastname.length > 0"
+                                  color="primary" (click)="onClearSearchFormFiled('lastname')">
+                            <mat-icon>clear</mat-icon>
+                          </button>
+                        </mat-form-field>
+                      </th>
+                      <td mat-cell class="px-16" *matCellDef="let el">{{el.lastname}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="actions" stickyEnd class="action">
+                      <th mat-header-cell class="py-12" *matHeaderCellDef>
+                        <div class="mt-13">
+                          <button type="submit" mat-icon-button aria-label="Submit"
+                                  [ngClass]="userDataSource.filterForm.value.name.length === 0 && userDataSource.filterForm.value.name.length === 0? 'aster_accent_disabled':'aster_accent'"
+                                  [disabled]="userDataSource.filterForm.value.name.length === 0 && userDataSource.filterForm.value.name.length === 0">
+                            <mat-icon class="arrow" [inline]="true">arrow_forward</mat-icon>
+                          </button>
+                          <button type="button" mat-icon-button aria-label="reset " class="aster_accent"
+                                  (click)="onResetSearchFilter()">
+                            <mat-icon [inline]="true">settings_backup_restore</mat-icon>
+                          </button>
+
+                        </div>
+                      </th>
+                      <td mat-cell class="py-7" *matCellDef="let el; let i = dataIndex;" >
+                        <div fxFlex="row" fxLayoutAlign="center" fxLayoutGap="10px">
+                          <button type="button" mat-icon-button class="aster_accent" (click)="onEdit(i, el)">
+                            <mat-icon class="edit" [inline]="true">edit</mat-icon>
+                          </button>
+                          <button type="button" mat-icon-button color="warn" (click)="onDelete(i, el)">
+                            <mat-icon [inline]="true">delete</mat-icon>
+                          </button>
+                        </div>
+                      </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="userDataSource.columnsToDisplay" ></tr>
+                    <tr mat-row
+                        *matRowDef="let el; columns: userDataSource.columnsToDisplay"></tr>
+                  </table>
+                </div>
+              </form>
+            </ng-container>
+            <!-- End table -->
+
+
+            <mat-paginator *ngIf="!!userDataSource.page"
+                           [length]="userDataSource.page.totalElements"
+                           [pageSizeOptions]="userDataSource.pageSizeOptions"
+                           (page)="paginate($event)"
+                           [pageSize]="userDataSource.page.size"
+                           [pageIndex]="getPageIndex()"
+                           class="w-100-p"></mat-paginator>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

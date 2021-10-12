@@ -1,0 +1,121 @@
+<div class="container-fluid">
+  <app-page-title
+    title="{{ 'HEADER.CONFIGURATION.TITEL' | translate}}"
+    [breadcrumbItems]="breadCrumbItems"
+  ></app-page-title>
+  <div class="row" >
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row mb-md-2">
+            <!-- Search -->
+
+            <!-- End search -->
+            <div class="text-sm-end">
+              <button
+                type="button"
+                class="btn btn-outline-success btn-rounded mb-3 me-2"
+                (click)="onCreateNew()">
+                <i class="mdi mdi-plus mr-1"></i>
+              </button>
+            </div>
+          </div>
+          <!-- Table -->
+          <ng-container>
+            <form [formGroup]="configurationDataSource.filterForm"
+                  (ngSubmit)="onSearch()">
+              <div fxLayout="column" class="mat-elevation-z2 w-100-p overflow mt-12 disabled-scroll">
+                <table mat-table [dataSource]="configurationDataSource.dataSource">
+                  <ng-container matColumnDef="code">
+                    <th class="header pt-16 px-15 max-w-150" mat-header-cell *matHeaderCellDef>
+                      <div class="company">
+                        {{ 'HEADER.CONFIGURATION.CODE' | translate}}
+                      </div>
+                      <mat-form-field class="filter w-100-p" floatLabel="never">
+                        <input matInput
+                               (keyup.backspace)="resetSearch(configurationDataSource.filterForm.value.code)"
+                               [formControl]="configurationDataSource.filterForm.get(['code'])">
+                        <mat-icon matSuffix class="disabled-text"
+                                  *ngIf="configurationDataSource.filterForm.value.code.length === 0">
+                          search
+                        </mat-icon>
+                        <button type="button" mat-icon-button matSuffix class="disabled-text"
+                                *ngIf="configurationDataSource.filterForm.value.code.length > 0"
+                                color="primary" (click)="onClearSearchFormFiled('code')">
+                          <mat-icon>clear</mat-icon>
+                        </button>
+                      </mat-form-field>
+                    </th>
+                    <td mat-cell class="px-16" *matCellDef="let el">{{el.code}}</td>
+                  </ng-container>
+                  <ng-container matColumnDef="label">
+                    <th class="header pt-16 px-16 max-w-150" mat-header-cell *matHeaderCellDef>
+                      <div class="company">
+                        {{ 'HEADER.CONFIGURATION.LABEL' | translate}}       </div>
+                      <mat-form-field class="filter w-100-p" floatLabel="never">
+                        <input matInput (keyup.backspace)="resetSearch(configurationDataSource.filterForm.value.label)"
+                               [formControl]="configurationDataSource.filterForm.get(['label'])">
+                        <mat-icon matSuffix class="disabled-text"
+                                  *ngIf="configurationDataSource.filterForm.value.label.length === 0">
+                          search
+                        </mat-icon>
+                        <button type="button" mat-icon-button matSuffix class="disabled-text"
+                                *ngIf="configurationDataSource.filterForm.value.label.length > 0"
+                                color="primary" (click)="onClearSearchFormFiled('label')">
+                          <mat-icon>clear</mat-icon>
+                        </button>
+                      </mat-form-field>
+                    </th>
+                    <td mat-cell class="px-16" *matCellDef="let el">{{el.label}}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="actions" stickyEnd class="action">
+                    <th mat-header-cell class="py-12" *matHeaderCellDef>
+                      <div class="mt-13">
+                        <button type="submit" mat-icon-button aria-label="Submit"
+                                [ngClass]="configurationDataSource.filterForm.value.code.length === 0 && configurationDataSource.filterForm.value.code.length === 0? 'aster_accent_disabled':'aster_accent'"
+                                [disabled]="configurationDataSource.filterForm.value.code.length === 0 && configurationDataSource.filterForm.value.code.length === 0">
+                          <mat-icon class="arrow" [inline]="true">arrow_forward</mat-icon>
+                        </button>
+                        <button type="button" mat-icon-button aria-label="reset " class="aster_accent"
+                                (click)="onResetSearchFilter()">
+                          <mat-icon [inline]="true">settings_backup_restore</mat-icon>
+                        </button>
+
+                      </div>
+                    </th>
+                    <td mat-cell class="py-7" *matCellDef="let el; let i = dataIndex;" >
+                      <div fxFlex="row" fxLayoutAlign="center" fxLayoutGap="10px">
+                        <button type="button" mat-icon-button class="aster_accent" (click)="onEdit(i, el)">
+                          <mat-icon class="edit" [inline]="true">edit</mat-icon>
+                        </button>
+                        <button type="button" mat-icon-button color="warn" (click)="onDelete(i, el)">
+                          <mat-icon [inline]="true">delete</mat-icon>
+                        </button>
+                      </div>
+                    </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="configurationDataSource.columnsToDisplay" ></tr>
+                  <tr mat-row
+                      *matRowDef="let el; columns: configurationDataSource.columnsToDisplay"></tr>
+                </table>
+              </div>
+            </form>
+          </ng-container>
+          <!-- End table -->
+
+
+          <mat-paginator *ngIf="!!configurationDataSource.page"
+                         [length]="configurationDataSource.page.totalElements"
+                         [pageSizeOptions]="configurationDataSource.pageSizeOptions"
+                         (page)="paginate($event)"
+                         [pageSize]="configurationDataSource.page.size"
+                         [pageIndex]="getPageIndex()"
+                         class="w-100-p"></mat-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

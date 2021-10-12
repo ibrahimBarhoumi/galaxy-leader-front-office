@@ -1,0 +1,38 @@
+<mat-toolbar>
+  <span [hidden]="configurationValueService.form.controls['id'].value">{{'HEADER.CONFIGURATION.MODAL.TITLECREATE'|translate}}</span>
+  <span [hidden]="!configurationValueService.form.controls['id'].value">{{'HEADER.CONFIGURATION.MODAL.TITELUPDATE'|translate}}</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close "  mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+<form class="needs-validation" (submit)="onSubmit()" [formGroup]="configurationValueService.form">
+  <div class="row mb-4">
+    <label for="horizontal-firstname-input" class="col-sm-3 col-form-label">Code</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" id="horizontal-firstname-input" formControlName="code"
+             placeholder="code"   [ngClass]="{
+                        'is-invalid': configurationValueService.form.controls['code'].errors
+                      }">
+    </div>
+    <div *ngIf="configurationValueService.form.controls['code'].invalid &&  configurationValueService.form.controls['code'].touched"  class="invalid-feedback">
+
+      Please enter username
+    </div>
+  </div>
+  <div class="row mb-4">
+    <label for="horizontal-email-input" class="col-sm-3 col-form-label">Label</label>
+    <div class="col-sm-9">
+      <input type="email" class="form-control" id="horizontal-email-input" formControlName="label"
+             placeholder="label">
+    </div>
+  </div>
+
+  <div class="d-flex  justify-content-end">
+    <div class="button-row">
+      <button mat-raised-button color="warn" (click)="onClear()">{{'HEADER.CLIENTS.MODAL.CLEAR'|translate}}</button>
+      <button [hidden]="configurationValueService.form.controls['id'].value" mat-raised-button class="submitCreate" type="submit" [disabled]="configurationValueService.form.invalid">{{'HEADER.CLIENTS.MODAL.SAVE'|translate}}</button>
+      <button [hidden]="!configurationValueService.form.controls['id'].value" mat-raised-button class="submitUpdate" type="submit" [disabled]="configurationValueService.form.invalid">{{'HEADER.CLIENTS.MODAL.SAVE'|translate}}</button>
+
+    </div>
+  </div>
+
+</form>

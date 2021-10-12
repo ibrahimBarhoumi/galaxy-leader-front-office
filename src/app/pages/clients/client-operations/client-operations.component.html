@@ -1,0 +1,69 @@
+<mat-toolbar>
+  <span [hidden]="clientService.form.controls['id'].value">{{'HEADER.CLIENTS.MODAL.TITLECREATE'|translate}}</span>
+  <span [hidden]="!clientService.form.controls['id'].value">{{'HEADER.CLIENTS.MODAL.TITELUPDATE'|translate}}</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close "  mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+<form [formGroup]="clientService.form" class="normal-form" (submit)="onSubmit()">
+  <mat-grid-list cols="2" rowHeight="355px">
+    <mat-grid-tile>
+      <div class="controles-container">
+        <input type="hidden" formControlName="id">
+        <mat-form-field>
+          <input formControlName="companyName" matInput placeholder="{{'HEADER.CLIENTS.MODAL.COMPANY'|translate}}">
+          <mat-error>{{'HEADER.ERROR.REQUIRED'|translate}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="address" matInput placeholder="{{'HEADER.CLIENTS.MODAL.ADDRESS'|translate}}">
+          <mat-error>{{'HEADER.ERROR.REQUIRED'|translate}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="postcode" matInput placeholder="{{'HEADER.CLIENTS.MODAL.POSTCODE'|translate}}">
+          <mat-error>{{'HEADER.ERROR.REQUIRED'|translate}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="city" matInput placeholder="{{'HEADER.CLIENTS.MODAL.CITY'|translate}}">
+          <mat-error>{{'HEADER.ERROR.REQUIRED'|translate}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="legalForm" matInput placeholder="{{'HEADER.CLIENTS.MODAL.LEGALFORM'|translate}}">
+          <mat-error>{{'HEADER.ERROR.REQUIRED'|translate}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input type="number" formControlName="capital" matInput placeholder="{{'HEADER.CLIENTS.MODAL.CAPITAL'|translate}}">
+          <mat-icon matSuffix>euro_symbol</mat-icon>
+          <mat-error>{{'HEADER.ERROR.REQUIRED'|translate}}</mat-error>
+        </mat-form-field>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="controles-container">
+        <mat-form-field>
+          <input formControlName="rcc" matInput placeholder="{{'HEADER.CLIENTS.MODAL.RCC'|translate}}">
+          <mat-error>{{'HEADER.ERROR.REQUIRED'|translate}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="siren" matInput placeholder="{{'HEADER.CLIENTS.MODAL.SIREN'|translate}}">
+          <mat-error>{{'HEADER.ERROR.REQUIRED'|translate}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input  formControlName="vatNumber" matInput placeholder="{{'HEADER.CLIENTS.MODAL.VATNUMBER'|translate}}">
+          <mat-error *ngIf="clientService.form.controls['vatNumber'].errors?.minlength">{{'REQUIRED8NUMBER'|translate}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="currency" matInput placeholder="{{'HEADER.CLIENTS.MODAL.CURRENCY'|translate}}">
+        </mat-form-field>
+        <div class="add-bottom-padding">
+          <mat-checkbox style="margin-left:12px " formControlName="foreign">{{'HEADER.CLIENTS.MODAL.FOREIGN'|translate}}</mat-checkbox>
+        </div>
+        <div class="button-row">
+          <button mat-raised-button color="warn" (click)="onClear()">{{'HEADER.CLIENTS.MODAL.CLEAR'|translate}}</button>
+            <button [hidden]="clientService.form.controls['id'].value" mat-raised-button class="submitCreate" type="submit" [disabled]="clientService.form.invalid">{{'HEADER.CLIENTS.MODAL.SAVE'|translate}}</button>
+          <button [hidden]="!clientService.form.controls['id'].value" mat-raised-button class="submitUpdate" type="submit" [disabled]="clientService.form.invalid">{{'HEADER.CLIENTS.MODAL.SAVE'|translate}}</button>
+
+        </div>
+      </div>
+
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>

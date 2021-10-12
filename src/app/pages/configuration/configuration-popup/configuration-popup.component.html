@@ -1,0 +1,38 @@
+<mat-toolbar>
+  <span [hidden]="configurationService.form.controls['id'].value">{{'HEADER.CONFIGURATION.MODAL.TITLECREATE'|translate}}</span>
+  <span [hidden]="!configurationService.form.controls['id'].value">{{'HEADER.CONFIGURATION.MODAL.TITELUPDATE'|translate}}</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close "  mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+<form class="needs-validation" (submit)="onSubmit()" [formGroup]="configurationService.form">
+  <div class="row mb-4">
+    <label for="horizontal-firstname-input" class="col-sm-3 col-form-label">{{ 'HEADER.CONFIGURATION.CODE' | translate}}</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" id="horizontal-firstname-input" formControlName="code"
+             placeholder="{{ 'HEADER.CONFIGURATION.CODE' | translate}}"   >
+      <div *ngIf="configurationService.formControls.code.invalid && (configurationService.formControls.code.dirty || configurationService.formControls.code.touched)" class="mat-error ng-tns-c181-19"  >
+        {{'HEADER.ERROR.REQUIRED'|translate}}
+      </div>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <label for="horizontal-email-input" class="col-sm-3 col-form-label">{{ 'HEADER.CONFIGURATION.LABEL' | translate}}</label>
+    <div class="col-sm-9">
+      <input type="email" class="form-control" id="horizontal-email-input" formControlName="label"
+             placeholder="{{ 'HEADER.CONFIGURATION.LABEL' | translate}}">
+      <div *ngIf="configurationService.formControls.label.invalid && (configurationService.formControls.label.dirty || configurationService.formControls.label.touched)" class="mat-error ng-tns-c181-19"  >
+        {{'HEADER.ERROR.REQUIRED'|translate}}
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex  justify-content-end">
+    <div class="button-row">
+      <button mat-raised-button color="warn" (click)="onClear()">{{'HEADER.CLIENTS.MODAL.CLEAR'|translate}}</button>
+      <button [hidden]="configurationService.form.controls['id'].value" mat-raised-button class="submitCreate" type="submit" [disabled]="configurationService.form.invalid">{{'HEADER.CLIENTS.MODAL.SAVE'|translate}}</button>
+      <button [hidden]="!configurationService.form.controls['id'].value" mat-raised-button class="submitUpdate" type="submit" [disabled]="configurationService.form.invalid">{{'HEADER.CLIENTS.MODAL.SAVE'|translate}}</button>
+
+    </div>
+  </div>
+
+</form>

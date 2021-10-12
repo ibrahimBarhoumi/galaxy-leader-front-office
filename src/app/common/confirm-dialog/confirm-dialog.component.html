@@ -1,0 +1,11 @@
+<h1 matDialogTitle>{{title}}</h1>
+  <mat-dialog-content style="min-width: 400px; max-width: 500px">
+  <div [innerHTML]="message"></div>
+</mat-dialog-content>
+<mat-dialog-actions class="mt-24 mb-0">
+  <div class="w-100-p delete-popup">
+    <button mat-raised-button [color]="confirmButtonColor" class="gxld-modal-btn_validate" id="confirm_delete"
+            (click)="dialogRef.close(true)">{{confirmButtonLabel}}</button>
+    <button mat-button class="gxld-btn_cancel" (click)="dialogRef.close(false)">{{cancelButtonLabel}}</button>
+  </div>
+</mat-dialog-actions>

@@ -1,0 +1,25 @@
+
+.btn-dialog-close {
+  position: fixed;
+  left: 64%;
+}
+mat-toolbar{
+  margin-bottom: 3px;
+  background-color: #2a3042;
+  color: white;
+}
+button.mat-raised-button{
+  margin-right: 10px;
+}
+.button-row {
+  display: table-cell;
+  width: 490px;
+}
+.submitCreate{
+  background-color: #34c38f;
+  color: whitesmoke;
+}
+.submitUpdate{
+  background-color: dodgerblue;
+  color: whitesmoke;
+}

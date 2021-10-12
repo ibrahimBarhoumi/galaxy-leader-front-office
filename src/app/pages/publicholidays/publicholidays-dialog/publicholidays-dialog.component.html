@@ -1,0 +1,38 @@
+<mat-toolbar>
+  <span [hidden]="publicHolidayService.form.controls['id'].value">{{'HEADER.PUBLICHOLIDAY.MODAL.TITLECREATE'|translate}}</span>
+  <span [hidden]="!publicHolidayService.form.controls['id'].value">{{'HEADER.PUBLICHOLIDAY.MODAL.TITELUPDATE'|translate}}</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close "  mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+<form class="needs-validation" (submit)="onSubmit()" [formGroup]="publicHolidayService.form">
+  <div class="row mb-4">
+    <label for="horizontal-firstlabel-input" class="col-sm-3 col-form-label">{{ 'HEADER.PUBLICHOLIDAY.LABEL' | translate}}</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" id="horizontal-firstlabel-input" formControlName="label"
+             placeholder="label" >
+      <div *ngIf="publicHolidayService.formControls.label.invalid && (publicHolidayService.formControls.label.dirty || publicHolidayService.formControls.label.touched)" class="mat-error ng-tns-c181-19"  >
+        {{'HEADER.ERROR.REQUIRED'|translate}}
+      </div>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <label for="horizontal-email-input" class="col-sm-3 col-form-label">{{ 'HEADER.PUBLICHOLIDAY.DATE' | translate}}</label>
+    <div class="col-sm-9">
+      <input type="date" class="form-control" id="horizontal-email-input" formControlName="date"
+             placeholder="date">
+      <div *ngIf="publicHolidayService.formControls.date.invalid && (publicHolidayService.formControls.date.dirty || publicHolidayService.formControls.date.touched)" class="mat-error ng-tns-c181-19"  >
+        {{'HEADER.ERROR.REQUIRED'|translate}}
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex  justify-content-end">
+    <div class="button-row">
+      <button mat-raised-button color="warn" (click)="onClear()">{{'HEADER.CLIENTS.MODAL.CLEAR'|translate}}</button>
+      <button [hidden]="publicHolidayService.form.controls['id'].value" mat-raised-button class="submitCreate" type="submit" [disabled]="publicHolidayService.form.invalid">{{'HEADER.CLIENTS.MODAL.SAVE'|translate}}</button>
+      <button [hidden]="!publicHolidayService.form.controls['id'].value" mat-raised-button class="submitUpdate" type="submit" [disabled]="publicHolidayService.form.invalid">{{'HEADER.CLIENTS.MODAL.SAVE'|translate}}</button>
+
+    </div>
+  </div>
+
+</form>
