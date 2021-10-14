@@ -1,0 +1,58 @@
+services:
+  - docker:19.03.12-dind
+
+stages:
+  - build
+  - test
+  - docker_build
+  - deploy
+
+
+Build:
+  image: node:14.16.1
+  stage: build
+  cache:
+      paths:
+        - node_modules/
+  script:
+    - npm install -g @angular/cli@11.2.0
+    - npm install
+    - npm run build-develop
+  artifacts:
+    paths:
+      - dist/galaxy-leader-front-office
+
+Docker build:
+  stage: docker_build
+  tags:
+    - deploy
+  before_script:
+    - source .${CI_COMMIT_REF_NAME}.env
+  environment:
+    name: develop
+  only:
+    refs:
+      - develop
+  script:
+    - docker build -t $DOCKER_REPO .
+    - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD docker.io
+    - docker push $DOCKER_REPO
+
+
+Deploy:
+  stage: deploy
+  tags:
+    - deploy
+  before_script:
+    - source .${CI_COMMIT_REF_NAME}.env
+  environment:
+    name: develop
+  only:
+    refs:
+      - develop
+  script:
+    - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD docker.io
+    - docker pull $DOCKER_REPO
+    - docker stop $APP_NAME || true && docker rm $APP_NAME || true
+    - docker container run -d --name $APP_NAME -p $PORT:4201 --network mysqlnet $DOCKER_REPO
+    - docker logout
